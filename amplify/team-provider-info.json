@@ -16,5 +16,23 @@
         "assetpulseui022c9a21": {}
       }
     }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-assetpulseui-prod-221657-authRole",
+      "UnauthRoleArn": "arn:aws:iam::920264457666:role/amplify-assetpulseui-prod-221657-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::920264457666:role/amplify-assetpulseui-prod-221657-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-assetpulseui-prod-221657-deployment",
+      "UnauthRoleName": "amplify-assetpulseui-prod-221657-unauthRole",
+      "StackName": "amplify-assetpulseui-prod-221657",
+      "StackId": "arn:aws:cloudformation:us-east-1:920264457666:stack/amplify-assetpulseui-prod-221657/8082cce0-3771-11eb-ba23-0eb35faf783f",
+      "AmplifyAppId": "ddhekn435meqq"
+    },
+    "categories": {
+      "auth": {
+        "assetpulseui022c9a21": {}
+      }
+    }
   }
 }
