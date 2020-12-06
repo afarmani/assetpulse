@@ -1,0 +1,28 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateAsset {
+  onCreateAsset {
+    id
+    symbol
+    exchange
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateAsset {
+  onUpdateAsset {
+    id
+    symbol
+    exchange
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteAsset {
+  onDeleteAsset {
+    id
+    symbol
+    exchange
+    createdAt
+    updatedAt
+  }
+}

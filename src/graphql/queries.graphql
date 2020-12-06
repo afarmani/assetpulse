@@ -1,0 +1,26 @@
+# this is an auto generated file. This will be overwritten
+query GetAsset($id: ID!) {
+  getAsset(id: $id) {
+    id
+    symbol
+    exchange
+    createdAt
+    updatedAt
+  }
+}
+query ListAssets(
+  $filter: ModelAssetFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAssets(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      symbol
+      exchange
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}

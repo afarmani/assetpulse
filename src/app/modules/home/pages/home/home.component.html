@@ -1,0 +1,13 @@
+<div class="app-body">
+  <span *ngIf="loading">Loading...</span>
+  <div class="card-container">
+    <div class="card" *ngFor="let asset of assets">
+      <div class="remove">
+<!--        <button (click)="onDelete(asset)" class="button">Delete</button>-->
+      </div>
+      <div class="city">{{asset.symbol}}</div>
+      <div class="exchange">{{asset.exchange}}</div>
+    </div>
+  </div>
+</div>
+
