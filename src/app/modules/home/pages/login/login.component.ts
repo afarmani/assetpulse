@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   user: CognitoUserInterface;
 
   constructor(private ref: ChangeDetectorRef) {
-    debugger;
     Auth.currentAuthenticatedUser().then(console.log);
   }
 
