@@ -1,0 +1,51 @@
+.container
+  height: 100%
+  display: flex
+  flex-direction: column
+
+.content
+  height: inherit
+  display: flex
+  flex-direction: row
+
+.column-left
+  flex: 0.5 0 auto
+  height: inherit
+
+.column-right
+  flex: 4 0 auto
+  height: inherit
+
+.header-left
+  background: brown
+
+.main-left
+  background: lightblue
+  height: inherit
+
+.header-right
+  background: red
+
+.main-right
+  background: lightcyan
+  height: inherit
+
+.header
+  background: aliceblue
+
+.footer
+  background: aqua
+
+.wrapper
+  display: grid
+  // minmax(width...)
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr))
+  gap: 5px
+  grid-auto-rows: 200px
+
+.items
+  border-style: solid
+  border-width: 2px
+
+
+
