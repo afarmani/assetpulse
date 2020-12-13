@@ -1,32 +1,11 @@
-<router-outlet></router-outlet>
-
-<!--<body class="site">-->
-<!--  <nav class="site-nav flex-center">-->
-<!--    <h1 class="section-title">NAV</h1>-->
-<!--  </nav>-->
-<!--  <main class="site-content">-->
-<!--    <header class="content-header flex-center">-->
-<!--      <h1 class="section-title">HEADER</h1>-->
-<!--    </header>-->
-<!--    <section class="content-topic flex-center">-->
-<!--      <h1 class="section-title">TOPIC</h1>-->
-<!--    </section>-->
-<!--  </main>-->
-<!--</body>-->
-
-<!--<mat-sidenav-container>-->
-<!--  <mat-sidenav></mat-sidenav>-->
-<!--  <h1>ENV: {{envName}}</h1>-->
-<!--</mat-sidenav-container>-->
-<!--<amplify-authenticator></amplify-authenticator>-->
-<!--  <amplify-authenticator></amplify-authenticator>-->
-
-
-<!--<div class="app-header">-->
-<!--  <h1>ENV: {{envName}}</h1>-->
-<!--</div>-->
-<!--<div class="navigation">-->
-<!--  <a [routerLink]="['login']" routerLinkActive="active">login</a>&nbsp;|&nbsp;-->
-<!--  <a [routerLink]="['home']" routerLinkActive="active">home</a>-->
-<!--</div>-->
-<!--<router-outlet></router-outlet>-->
+<div class="header">
+  <app-side-header></app-side-header>
+  <app-main-header></app-main-header>
+</div>
+<div class="content">
+  <app-side-nav></app-side-nav>
+  <app-dashboard></app-dashboard>
+</div>
+<div class="footer">
+  <app-footer></app-footer>
+</div>

@@ -1,8 +1,0 @@
-<div>
-  <amplify-authenticator *ngIf="!signedIn"></amplify-authenticator>
-  <div *ngIf="signedIn && user">
-    <div>Signed in: {{user.username}}</div>
-    <amplify-sign-out></amplify-sign-out>
-  </div>
-</div>
-
