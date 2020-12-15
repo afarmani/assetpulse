@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-price-info',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./price-info.component.sass']
 })
 export class PriceInfoComponent implements OnInit {
+  @Input() priceLabel: any;
+  @Input() priceValue: any;
+  s
 
   constructor() { }
 

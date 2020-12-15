@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-volume-info',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./volume-info.component.sass']
 })
 export class VolumeInfoComponent implements OnInit {
+  @Input() volumeLabel: string;
+  @Input() volumeValue: string;
 
   constructor() { }
 

@@ -1,5 +1,5 @@
 import {Component, ComponentFactoryResolver, Input, OnInit, ViewChild} from '@angular/core';
-import {AddDisplayTemplateItem} from 'src/app/shared/components/add-display-template-item';
+import {DisplayTemplateItems} from 'src/app/shared/components/display-template-items';
 import {DisplayTemplateService} from 'src/app/core/services/display-template.service';
 import {DisplayTemplateDirective} from 'src/app/shared/directives/display-template/display-template.directive';
 
@@ -11,8 +11,8 @@ import {DisplayTemplateDirective} from 'src/app/shared/directives/display-templa
 export class TemplateDisplayComponent implements OnInit {
 
   @Input() symbolKey: string;
-  displayTemplateItems: AddDisplayTemplateItem
-  @ViewChild(DisplayTemplateDirective, {static: true}) appBoxDisplayTemplate: DisplayTemplateDirective;
+  displayTemplateItems: DisplayTemplateItems
+  @ViewChild(DisplayTemplateDirective, {static: true}) appDisplayTemplate: DisplayTemplateDirective;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private displayTemplateService: DisplayTemplateService) { }
 
@@ -24,7 +24,7 @@ export class TemplateDisplayComponent implements OnInit {
   private loadDisplayTemplateComponents() {
 
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.displayTemplateItems.component);
-    const viewContainerRef = this.appBoxDisplayTemplate.viewContainerRef;
+    const viewContainerRef = this.appDisplayTemplate.viewContainerRef;
     viewContainerRef.clear();
 
     const componentRef = viewContainerRef.createComponent<any>(componentFactory);
