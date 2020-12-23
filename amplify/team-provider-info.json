@@ -10,11 +10,6 @@
       "StackName": "amplify-assetpulseui-dev-21455",
       "StackId": "arn:aws:cloudformation:us-east-1:920264457666:stack/amplify-assetpulseui-dev-21455/9590e700-36c9-11eb-86c5-12bd192597a3",
       "AmplifyAppId": "ddhekn435meqq"
-    },
-    "categories": {
-      "auth": {
-        "assetpulseui022c9a21": {}
-      }
     }
   },
   "prod": {

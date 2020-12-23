@@ -1,29 +1,17 @@
 {
-  "auth": {
-    "assetpulseui022c9a21": {
-      "service": "Cognito",
+  "auth": {},
+  "api": {},
+  "function": {
+    "symbolSearchFn": {
+      "build": true,
       "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false
-    }
-  },
-  "api": {
-    "assetpulseui": {
-      "service": "AppSync",
+      "service": "Lambda",
+      "dependsOn": []
+    },
+    "alphavantageapi": {
+      "build": true,
       "providerPlugin": "awscloudformation",
-      "output": {
-        "authConfig": {
-          "defaultAuthentication": {
-            "authenticationType": "API_KEY",
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 7,
-              "description": "assetpulseui"
-            }
-          },
-          "additionalAuthenticationProviders": []
-        }
-      }
+      "service": "Lambda"
     }
-  },
-  "function": {}
+  }
 }

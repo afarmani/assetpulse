@@ -1,5 +1,0 @@
-type Asset @model {
-  id: ID!
-  symbol: String!
-  exchange: String
-}

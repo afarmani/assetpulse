@@ -8,7 +8,6 @@ import {Component, Input, OnInit} from '@angular/core';
 export class PriceInfoComponent implements OnInit {
   @Input() priceLabel: any;
   @Input() priceValue: any;
-  s
 
   constructor() { }
 

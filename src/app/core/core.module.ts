@@ -4,6 +4,7 @@ import {MainHeaderComponent} from './header/main-header/main-header.component';
 import {SideHeaderComponent} from './header/side-header/side-header.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { FooterComponent } from './footer/footer.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [MainHeaderComponent, SideHeaderComponent, SideNavComponent, FooterComponent],
@@ -13,9 +14,10 @@ import { FooterComponent } from './footer/footer.component';
     SideNavComponent,
     FooterComponent
   ],
-  imports: [
-    CommonModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule
+    ]
 })
 export class CoreModule {
 }
