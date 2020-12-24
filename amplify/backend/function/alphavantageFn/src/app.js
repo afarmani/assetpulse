@@ -1,6 +1,12 @@
+require('dotenv').config()
+
 var express = require('express')
 var bodyParser = require('body-parser')
+var http = require('http')
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
+
+const apikey = process.env.ALPHA_VANTAGE_API_KEY
+const apiurl = process.env.ALPHA_VANTAGE_URL
 
 // declare a new express app
 var app = express()
@@ -14,15 +20,18 @@ app.use(function(req, res, next) {
   next()
 });
 
+//req.apiGateway.event req.apiGateway.context
+app.get('/symbolsearch', function(req, res) {
+  const keyword = req.query['keywords']
+  console.log('symbolsearch::queryParam::', keyword)
 
+  // http.get()
+  res.json({success: 'test2 get call', url: req.url});
+});
 
 
 app.listen(3000, function() {
     console.log("App started")
-});
-
-app.get('/symbolsearch', function(req,res){
-  res.json({success: 'get call succeed!', url: req.url});
 });
 
 // Export the app object. When executing the application local this does nothing. However,
@@ -31,6 +40,8 @@ app.get('/symbolsearch', function(req,res){
 module.exports = app
 
 
+// console.log('symbolsearch::apikey::', apikey)
+// console.log('symbolsearch::apiurl::', apiurl)
 
 // /**********************
 //  * Example get method *
