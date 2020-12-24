@@ -17,12 +17,6 @@
     }
   },
   "function": {
-    "symbolSearchFn": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": []
-    },
     "alphavantageFn": {
       "build": true,
       "providerPlugin": "awscloudformation",
