@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {symbolInfo} from 'src/app/shared/models/symbol-info';
+import {symbolInfoOld} from 'src/app/shared/models/symbol-info-old';
 
 @Component({
   selector: 'app-symbol-info',
@@ -7,7 +7,7 @@ import {symbolInfo} from 'src/app/shared/models/symbol-info';
   styleUrls: ['./symbol-info.component.sass']
 })
 export class SymbolInfoComponent implements OnInit {
-  @Input() data: symbolInfo;
+  @Input() data: symbolInfoOld;
 
   constructor() { }
 

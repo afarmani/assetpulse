@@ -1,4 +1,4 @@
-export type symbolInfo = {
+export type symbolInfoOld = {
   symbolKey: string,
   symbolName: string
 }

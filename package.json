@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/build-angular": "^0.1100.5",
     "@angular/animations": "~11.0.3",
     "@angular/common": "~11.0.3",
     "@angular/compiler": "~11.0.3",
@@ -19,17 +20,11 @@
     "@angular/platform-browser": "~11.0.3",
     "@angular/platform-browser-dynamic": "~11.0.3",
     "@angular/router": "~11.0.3",
-    "@aws-amplify/api": "^3.2.14",
-    "@aws-amplify/auth": "^3.4.14",
-    "@aws-amplify/pubsub": "^3.2.12",
-    "@aws-amplify/storage": "^3.3.14",
-    "@aws-amplify/ui-angular": "^0.4.14",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1100.3",
     "@angular/cli": "~11.0.3",
     "@angular/compiler-cli": "~11.0.3",
     "@types/jasmine": "~3.6.0",

@@ -1,6 +1,21 @@
 {
   "auth": {},
-  "api": {},
+  "api": {
+    "alphavantageApi": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "alphavantageFn",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    }
+  },
   "function": {
     "symbolSearchFn": {
       "build": true,
@@ -8,7 +23,7 @@
       "service": "Lambda",
       "dependsOn": []
     },
-    "alphavantageapi": {
+    "alphavantageFn": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

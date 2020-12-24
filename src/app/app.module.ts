@@ -3,10 +3,10 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {AmplifyUIAngularModule} from '@aws-amplify/ui-angular';
 import {ReactiveFormsModule} from '@angular/forms';
 import {CoreModule} from 'src/app/core/core.module';
 import {DashboardModule} from 'src/app/modules/dashboard/dashboard.module';
+import {PortfolioModule} from "./modules/portfolio/portfolio.module";
 
 @NgModule({
   declarations: [
@@ -15,10 +15,10 @@ import {DashboardModule} from 'src/app/modules/dashboard/dashboard.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AmplifyUIAngularModule,
     ReactiveFormsModule,
     CoreModule,
-    DashboardModule
+    DashboardModule,
+    PortfolioModule
   ],
   providers: [
     Title

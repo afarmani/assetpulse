@@ -29,7 +29,6 @@ app.get('/symbolsearch', function(req, res) {
   res.json({success: 'test2 get call', url: req.url});
 });
 
-
 app.listen(3000, function() {
     console.log("App started")
 });
@@ -38,7 +37,6 @@ app.listen(3000, function() {
 // to port it to AWS Lambda we will create a wrapper around that will load the app from
 // this file
 module.exports = app
-
 
 // console.log('symbolsearch::apikey::', apikey)
 // console.log('symbolsearch::apiurl::', apiurl)

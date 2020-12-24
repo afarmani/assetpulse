@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/alphavantage",
+            "lambdaFunction": "alphavantageFn",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/alphavantage"
+        }
+    ],
+    "resourceName": "alphavantageApi",
+    "apiName": "alphavantageApi",
+    "functionArns": [
+        {
+            "lambdaFunction": "alphavantageFn"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-assetpulseui-dev-21455-authRole",
+        "unAuthRoleName": "amplify-assetpulseui-dev-21455-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "alphavantageFn",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

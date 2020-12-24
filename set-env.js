@@ -1,7 +1,8 @@
-import { writeFile } from 'fs';
+// can be used to create property/environment files at compile time.
+var fs = require('fs');
+require('dotenv').config()
 
 const targetPath = './src/environments/environment.ts';
-
 
 const envConfigFile = `export const environment = {
    alphaVantageApiKey: '${process.env.ALPHA_VANTAGE_API_KEY}',
@@ -10,7 +11,7 @@ const envConfigFile = `export const environment = {
 };
 `;
 
-writeFile(targetPath, envConfigFile, function (err) {
+fs.writeFile(targetPath, envConfigFile, function (err) {
   if (err) {
     throw console.error(err);
   } else {

@@ -7,6 +7,7 @@ import {Title} from "@angular/platform-browser";
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
+  title = 'test'
 
 }
 
