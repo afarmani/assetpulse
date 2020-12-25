@@ -14,10 +14,29 @@
           ]
         }
       ]
+    },
+    "testapi": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "testfn",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "function": {
     "alphavantageFn": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "testfn": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

@@ -1,36 +1,67 @@
+const {SymbolInfo} = require("@afarmani/alpha-vantage-library");
+
 require('dotenv').config()
 
-var express = require('express')
-var bodyParser = require('body-parser')
-var http = require('http')
-var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
+const express = require('express');
+const bodyParser = require('body-parser');
+const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
+const unirest = require("unirest");
+const {SymbolSearch} = require("@afarmani/alpha-vantage-library");
 
 const apikey = process.env.ALPHA_VANTAGE_API_KEY
 const apiurl = process.env.ALPHA_VANTAGE_URL
 
 // declare a new express app
-var app = express()
+const app = express();
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
 
 // Enable CORS for all methods
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
   next()
 });
 
 //req.apiGateway.event req.apiGateway.context
-app.get('/symbolsearch', function(req, res) {
-  const keyword = req.query['keywords']
-  console.log('symbolsearch::queryParam::', keyword)
+app.get('/alphavantage/symbolsearch', function (req, res) {
+  const queryFunction = 'SYMBOL_SEARCH'
+  const keyword = req.query['keyword']
 
-  // http.get()
-  res.json({success: 'test2 get call', url: req.url});
+  console.log('symbolsearch::get::GET Request::url', apiurl)
+  let apiRequest = unirest('GET', apiurl);
+
+  console.log('symbolsearch::get::GET Request::query', queryFunction, keyword)
+  apiRequest.query({
+    'function': queryFunction
+    , 'keywords': keyword
+    , 'apikey': apikey
+  })
+
+  apiRequest.headers({
+    "useQueryString": true
+  })
+
+  apiRequest.end(function (resp) {
+    if (resp.error)
+      throw new Error(resp.error)
+
+    console.log('symbolsearch::get::GET Request::resp status', resp.status)
+    console.log('symbolsearch::get::GET Request::resp body', resp.body)
+
+    let symbolSearch = new SymbolSearch()
+    symbolSearch.bestMatches = [];
+
+    for (i = 0; i < 10; i++) {
+      symbolSearch.bestMatches.push(new SymbolInfo(resp.body.bestMatches[i]))
+    }
+
+    res.json(symbolSearch)
+  })
 });
 
-app.listen(3000, function() {
-    console.log("App started")
+app.listen(3000, function () {
+  console.log("AlphaVantage API App Started")
 });
 
 // Export the app object. When executing the application local this does nothing. However,

@@ -1,18 +1,19 @@
 {
     "paths": [
         {
-            "name": "/alphavantage",
-            "lambdaFunction": "alphavantageFn",
+            "name": "/items",
+            "lambdaFunction": "testfn",
             "privacy": {
                 "open": true
-            }
+            },
+            "policyResourceName": "/items"
         }
     ],
-    "resourceName": "alphavantageApi",
-    "apiName": "alphavantageApi",
+    "resourceName": "testapi",
+    "apiName": "testapi",
     "functionArns": [
         {
-            "lambdaFunction": "alphavantageFn"
+            "lambdaFunction": "testfn"
         }
     ],
     "privacy": {
@@ -24,12 +25,11 @@
     "dependsOn": [
         {
             "category": "function",
-            "resourceName": "alphavantageFn",
+            "resourceName": "testfn",
             "attributes": [
                 "Name",
                 "Arn"
             ]
         }
-    ],
-    "uuid": "3056c793"
+    ]
 }

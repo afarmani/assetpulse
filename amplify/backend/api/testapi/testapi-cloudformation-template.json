@@ -14,15 +14,15 @@
         },
     
     
-          "functionalphavantageFnName": {
+          "functiontestfnName": {
             "Type": "String",
-            "Default": "functionalphavantageFnName"
+            "Default": "functiontestfnName"
           },
         
           
-          "functionalphavantageFnArn": {
+          "functiontestfnArn": {
             "Type": "String",
-            "Default": "functionalphavantageFnArn"
+            "Default": "functiontestfnArn"
           }
         
           
@@ -45,16 +45,16 @@
         
         
         
-      "alphavantageApi": {
+      "testapi": {
         "Type": "AWS::ApiGateway::RestApi",
         "Properties": {
           "Description": "",
-          "Name": "alphavantageApi",
+          "Name": "testapi",
           "Body": {
             "swagger": "2.0",
             "info": {
               "version": "2018-05-24T17:52:00Z",
-              "title": "alphavantageApi"
+              "title": "testapi"
             },
             "host": {
                 "Fn::Join": [
@@ -90,7 +90,7 @@
             ],
             "paths": {
               
-              "/alphavantage": {
+              "/items": {
                 "options": {
                   "consumes": [
                     "application/json"
@@ -176,7 +176,7 @@
                             
                             {
                                 
-                                "Ref": "functionalphavantageFnArn"
+                                "Ref": "functiontestfnArn"
                             },
                             
                             "/invocations"
@@ -189,7 +189,7 @@
                   }
                 }
               },
-              "/alphavantage/{proxy+}": {
+              "/items/{proxy+}": {
                 "options": {
                   "consumes": [
                     "application/json"
@@ -275,7 +275,7 @@
                           
                           {
                             
-                            "Ref": "functionalphavantageFnArn"
+                            "Ref": "functiontestfnArn"
                           },
                           
                           "/invocations"
@@ -332,12 +332,12 @@
                   
         
         
-        "functionalphavantageFnPermissionalphavantageApi": {
+        "functiontestfnPermissiontestapi": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
                 "FunctionName": 
                     {
-                        "Ref":  "functionalphavantageFnName"
+                        "Ref":  "functiontestfnName"
                     },
                     
                     "Action": "lambda:InvokeFunction",
@@ -356,7 +356,7 @@
                             },
                             ":",
                             {
-                                "Ref": "alphavantageApi"
+                                "Ref": "testapi"
                             },
                             "/*/*/*"
                         ]
@@ -367,7 +367,7 @@
         
         
         
-      "DeploymentAPIGWalphavantageApi3056c793": {
+      "DeploymentAPIGWtestapi": {
         "Type": "AWS::ApiGateway::Deployment",
         "Properties": {
           "Description": "The Development stage deployment of your API.",
@@ -381,7 +381,7 @@
             ]
           },
           "RestApiId": {
-            "Ref": "alphavantageApi"
+            "Ref": "testapi"
           }
         }
       }
@@ -389,15 +389,15 @@
     "Outputs": {
         "RootUrl": {
             "Description": "Root URL of the API gateway",
-            "Value": {"Fn::Join": ["", ["https://", {"Ref": "alphavantageApi"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/", {"Fn::If": ["ShouldNotCreateEnvResources","Prod", {"Ref": "env"} ]}]]}
+            "Value": {"Fn::Join": ["", ["https://", {"Ref": "testapi"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/", {"Fn::If": ["ShouldNotCreateEnvResources","Prod", {"Ref": "env"} ]}]]}
         },
         "ApiName": {
           "Description": "API Friendly name",
-          "Value": "alphavantageApi"
+          "Value": "testapi"
         },
         "ApiId": {
           "Description": "API ID (prefix of API URL)",
-          "Value": {"Ref": "alphavantageApi"}
+          "Value": {"Ref": "testapi"}
         }
     }
   }
