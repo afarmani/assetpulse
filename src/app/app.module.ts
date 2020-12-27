@@ -7,10 +7,12 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {CoreModule} from 'src/app/core/core.module';
 import {DashboardModule} from 'src/app/modules/dashboard/dashboard.module';
 import {PortfolioModule} from "./modules/portfolio/portfolio.module";
+import {AppMaterialModule} from "./app-material.module";
 
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -18,7 +20,8 @@ import {PortfolioModule} from "./modules/portfolio/portfolio.module";
     ReactiveFormsModule,
     CoreModule,
     DashboardModule,
-    PortfolioModule
+    PortfolioModule,
+    AppMaterialModule
   ],
   providers: [
     Title

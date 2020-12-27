@@ -1,17 +1,14 @@
-const {SymbolInfo} = require("@afarmani/alpha-vantage-library");
-
 require('dotenv').config()
+let unirest = require('unirest');
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
-const unirest = require("unirest");
-const {SymbolSearch} = require("@afarmani/alpha-vantage-library");
 
-const apikey = process.env.ALPHA_VANTAGE_API_KEY
-const apiurl = process.env.ALPHA_VANTAGE_URL
+const apiKey = process.env.ALPHA_VANTAGE_API_KEY
+const apiUrl = process.env.ALPHA_VANTAGE_URL
+const {SymbolInfo} = require("@afarmani/alpha-vantage-library");
 
-// declare a new express app
 const app = express();
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
@@ -23,107 +20,40 @@ app.use(function (req, res, next) {
   next()
 });
 
-//req.apiGateway.event req.apiGateway.context
 app.get('/alphavantage/symbolsearch', function (req, res) {
   const queryFunction = 'SYMBOL_SEARCH'
   const keyword = req.query['keyword']
-
-  console.log('symbolsearch::get::GET Request::url', apiurl)
-  let apiRequest = unirest('GET', apiurl);
-
-  console.log('symbolsearch::get::GET Request::query', queryFunction, keyword)
-  apiRequest.query({
+  const query = {
     'function': queryFunction
     , 'keywords': keyword
-    , 'apikey': apikey
-  })
+    , 'apikey': apiKey
+  }
 
-  apiRequest.headers({
-    "useQueryString": true
-  })
+  console.log('symbolsearch::get::GET Request::url', apiUrl)
+  console.log('symbolsearch::get::GET Request::query', queryFunction, keyword)
 
-  apiRequest.end(function (resp) {
-    if (resp.error)
-      throw new Error(resp.error)
+  unirest
+    .get(apiUrl)
+    .header({"useQueryString": true})
+    .query(query)
+    .then((resp)=>{
+      console.log('symbolsearch::get::GET Request::resp status', resp.status)
 
-    console.log('symbolsearch::get::GET Request::resp status', resp.status)
-    console.log('symbolsearch::get::GET Request::resp body', resp.body)
+      let symbolSearchResult = []
 
-    let symbolSearch = new SymbolSearch()
-    symbolSearch.bestMatches = [];
+      for (i = 0; i < resp.body.bestMatches.length; i++) {
+        symbolSearchResult.push(new SymbolInfo(resp.body.bestMatches[i]))
+      }
 
-    for (i = 0; i < 10; i++) {
-      symbolSearch.bestMatches.push(new SymbolInfo(resp.body.bestMatches[i]))
-    }
-
-    res.json(symbolSearch)
-  })
+      res.json(symbolSearchResult)
+    })
+    .catch((error) => {
+      console.log('symbolsearch::get::GET Request::error::', error)
+    })
 });
 
 app.listen(3000, function () {
   console.log("AlphaVantage API App Started")
 });
 
-// Export the app object. When executing the application local this does nothing. However,
-// to port it to AWS Lambda we will create a wrapper around that will load the app from
-// this file
 module.exports = app
-
-// console.log('symbolsearch::apikey::', apikey)
-// console.log('symbolsearch::apiurl::', apiurl)
-
-// /**********************
-//  * Example get method *
-//  **********************/
-//
-// app.get('/item', function(req, res) {
-//   // Add your code here
-//   res.json({success: 'get call succeed!', url: req.url});
-// });
-//
-// app.get('/item/*', function(req, res) {
-//   // Add your code here
-//   res.json({success: 'get call succeed!', url: req.url});
-// });
-//
-// /****************************
-//  * Example post method *
-//  ****************************/
-//
-// app.post('/item', function(req, res) {
-//   // Add your code here
-//   res.json({success: 'post call succeed!', url: req.url, body: req.body})
-// });
-//
-// app.post('/item/*', function(req, res) {
-//   // Add your code here
-//   res.json({success: 'post call succeed!', url: req.url, body: req.body})
-// });
-//
-// /****************************
-//  * Example put method *
-//  ****************************/
-//
-// app.put('/item', function(req, res) {
-//   // Add your code here
-//   res.json({success: 'put call succeed!', url: req.url, body: req.body})
-// });
-//
-// app.put('/item/*', function(req, res) {
-//   // Add your code here
-//   res.json({success: 'put call succeed!', url: req.url, body: req.body})
-// });
-//
-// /****************************
-//  * Example delete method *
-//  ****************************/
-//
-// app.delete('/item', function(req, res) {
-//   // Add your code here
-//   res.json({success: 'delete call succeed!', url: req.url});
-// });
-//
-// app.delete('/item/*', function(req, res) {
-//   // Add your code here
-//   res.json({success: 'delete call succeed!', url: req.url});
-// });

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {SymbolInfo, SymbolSearch} from "@afarmani/alpha-vantage-library";
+import {SymbolInfo} from "@afarmani/alpha-vantage-library";
 import {environment} from "src/environments/environment";
+import {API} from "aws-amplify";
 
 @Component({
   selector: 'app-create-portfolio',
@@ -9,11 +9,11 @@ import {environment} from "src/environments/environment";
   styleUrls: ['./create-portfolio.component.sass']
 })
 export class CreatePortfolioComponent implements OnInit {
-  outputBody: string;
+  symbolSearchResult: SymbolInfo[];
   inputValue: string;
   increment = 0;
 
-  constructor(private http: HttpClient) {
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -21,10 +21,23 @@ export class CreatePortfolioComponent implements OnInit {
 
   searchForSymbol($event: any) {
     this.inputValue = $event.target.value;
-    console.log('createPortfolio::searchForSymbol::input::', this.inputValue);
-    this.http.get(environment.alphavantageFnHost + '/alphavantage/symbolsearch?keyword=' + this.inputValue)
-      .subscribe((data: SymbolSearch) => {
-        this.outputBody = JSON.stringify(data, null, 2);
-      });
+
+    const apiInit = {
+      headers: {
+      }
+      , response: false
+      , queryStringParameters: {'keyword': this.inputValue}
+
+    }
+    console.log('createPortfolio::searchForSymbol::API GET::', environment.alphavantageApi, environment.symbolSearchPath);
+    console.log('createPortfolio::searchForSymbol::API GET::init', apiInit);
+
+    API
+      .get(environment.alphavantageApi, environment.symbolSearchPath, apiInit)
+      .then(resp => {
+        this.symbolSearchResult = resp
+      }).catch(error => {
+      console.log(error.message)
+    });
   }
 }
