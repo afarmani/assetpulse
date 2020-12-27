@@ -1,8 +1,7 @@
 export const environment = {
   // alphaVantageApiKey: process.env.ALPHA_VANTAGE_API_KEY,
-  production: 'false'
+  production: false
   , name: 'local'
   , alphavantageApi: 'alphavantageApi'
   , symbolSearchPath: '/alphavantage/symbolsearch'
-
 };

@@ -69,7 +69,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-assetpulseui-dev-21455-deployment",
-          "S3Key": "amplify-builds/alphavantageFn-4f6d6569784f53764631-build.zip"
+          "S3Key": "amplify-builds/alphavantageFn-4c5a70474b4c5a556468-build.zip"
         }
       }
     },
