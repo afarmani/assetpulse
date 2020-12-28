@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@afarmani/alpha-vantage-library": "0.0.1",
+    "@afarmani/alpha-vantage-library": "0.0.3",
     "@angular/animations": "~11.0.3",
     "@angular/cdk": "^11.0.3",
     "@angular/common": "~11.0.3",

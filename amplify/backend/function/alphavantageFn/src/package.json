@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@afarmani/alpha-vantage-library": "0.0.1",
+    "@afarmani/alpha-vantage-library": "0.0.3",
     "aws-serverless-express": "^3.3.5",
     "body-parser": "^1.17.1",
     "dotenv": "^8.2.0",

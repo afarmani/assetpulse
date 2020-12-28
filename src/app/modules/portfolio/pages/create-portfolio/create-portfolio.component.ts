@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {SymbolInfo} from "@afarmani/alpha-vantage-library";
 import {environment} from "src/environments/environment";
 import {API} from "aws-amplify";
+import {ApiErrorNote, SymbolInfo} from "@afarmani/alpha-vantage-library";
 
 @Component({
   selector: 'app-create-portfolio',
@@ -10,6 +10,7 @@ import {API} from "aws-amplify";
 })
 export class CreatePortfolioComponent implements OnInit {
   symbolSearchResult: SymbolInfo[];
+  errorNote: string;
   inputValue: string;
   increment = 0;
 
@@ -35,7 +36,16 @@ export class CreatePortfolioComponent implements OnInit {
     API
       .get(environment.alphavantageApi, environment.symbolSearchPath, apiInit)
       .then(resp => {
-        this.symbolSearchResult = resp
+        if(resp.serviceErrorNote){
+          this.errorNote = resp.serviceErrorNote;
+        } else {
+          if(resp.length>0){
+            this.symbolSearchResult = resp;
+            this.errorNote = null;
+          } else {
+            this.errorNote = 'No results'
+          }
+        }
       }).catch(error => {
       console.log(error.message)
     });

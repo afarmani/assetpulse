@@ -5,8 +5,12 @@
   <input (keyup)="searchForSymbol($event)" >
 </div>
 
-<div class="add-symbol-bts">
-  <app-add-item-btn *ngFor="let symbolInfo of symbolSearchResult" btnInputText="{{symbolInfo.symbol}} - {{symbolInfo.name}}"></app-add-item-btn>
+<div *ngIf="!errorNote" class="add-symbol-bts">
+  <app-add-item-btn  *ngFor="let symbolInfo of symbolSearchResult" btnInputText="{{symbolInfo.symbol}} - {{symbolInfo.name}}"></app-add-item-btn>
+</div>
+
+<div *ngIf="errorNote">
+  <div>{{errorNote}}</div>
 </div>
 <!--<pre>-->
 <!--{{symbolSearchResult}}-->
