@@ -41,14 +41,19 @@ app.get('/alphavantage/symbolsearch', function (req, res) {
 
       let symbolSearchResult = []
 
-      for (i = 0; i < resp.body.bestMatches.length; i++) {
-        symbolSearchResult.push(new SymbolInfo(resp.body.bestMatches[i]))
+      if(resp.body['Note']){
+        console.log('symbolsearch::get::GET Request::api-limit-exceeded')
+        res.json({'error': 'api-limit-hit'})
+      } else {
+        for (i = 0; i < resp.body.bestMatches.length; i++) {
+          symbolSearchResult.push(new SymbolInfo(resp.body.bestMatches[i]))
+        }
+        res.json(symbolSearchResult)
       }
-
-      res.json(symbolSearchResult)
     })
     .catch((error) => {
       console.log('symbolsearch::get::GET Request::error::', error)
+      res.json({'error': error.message})
     })
 });
 
