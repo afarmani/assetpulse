@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {environment} from "src/environments/environment";
 import {API} from "aws-amplify";
-import {ApiErrorNote, SymbolInfo} from "@afarmani/alpha-vantage-library";
+import {SymbolInfo} from "@afarmani/alpha-vantage-library";
 
 @Component({
   selector: 'app-create-portfolio',

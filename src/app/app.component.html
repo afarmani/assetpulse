@@ -1,11 +1,27 @@
-<div class="header">
-  <app-side-header style="min-width: 86px"></app-side-header>
-  <app-main-header></app-main-header>
-</div>
-<div class="content">
-  <div><app-side-nav style="min-width: 86px"></app-side-nav></div>
-  <div><router-outlet></router-outlet></div>
-</div>
-<div class="footer">
-  <app-footer></app-footer>
-</div>
+<mat-sidenav-container>
+  <mat-sidenav class="sidenav-main" #sidenav mode="side">
+    <ul class="sidenav-list-container">
+      <li class="sidenav-list-item"><a routerLink="create-portfolio">side.nav-create-portfolio</a></li>
+      <li class="sidenav-list-item"><a routerLink="dashboard">side.nav-dashboard</a></li>
+    </ul>
+
+    <!--    <app-side-nav></app-side-nav>-->
+
+  </mat-sidenav>
+  <!--  <mat-sidenav mode="side" opened position="end">-->
+  <!--    end-->
+  <!--  </mat-sidenav>-->
+  <mat-sidenav-content>
+
+    <div class="sidenav-content-main-header">
+<!--      <div style="background: lightblue">-->
+        <button mat-button (click)="sidenav.toggle()">Toggle</button>
+<!--      </div>-->
+<!--      <div>-->
+        <app-main-header></app-main-header>
+<!--      </div>-->
+    </div>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>
